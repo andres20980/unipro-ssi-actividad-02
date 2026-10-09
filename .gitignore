@@ -1,0 +1,5 @@
+pcap/
+capturas/*.log
+capturas/eve.json
+capturas/fast.log
+capturas/stats.log
