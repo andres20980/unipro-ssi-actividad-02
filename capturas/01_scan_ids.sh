@@ -4,13 +4,12 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 mkdir -p "$PWD/pcap"
-PCAP="$PWD/pcap/scan.pcap"
 
-docker network rm ssi-lab >/dev/null 2>&1 || true
 docker rm -f ssi-target ssi-sniff >/dev/null 2>&1 || true
+docker network rm ssi-lab >/dev/null 2>&1 || true
 
 docker network create --internal --subnet 10.10.0.0/16 ssi-lab >/dev/null
-# Objetivo: servidor web con varios puertos; nginx escucha en el 80.
+# Objetivo: varios puertos abiertos (22, 80, 443, 3306) servidos con socat.
 docker run -d --name ssi-target --network ssi-lab --ip 10.10.1.5 alpine:3.20 \
   sh -c 'apk add --no-cache socat >/dev/null 2>&1; for p in 22 80 443 3306; do socat TCP-LISTEN:$p,fork,reuseaddr - & done; sleep 600' >/dev/null
 sleep 6

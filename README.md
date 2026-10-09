@@ -5,7 +5,9 @@ en contenedores locales; no se lanza nada contra sistemas de terceros. Los logs 
 `logs/` son **datos simulados** creados para el ejercicio (incidente del 15-may 03:14).
 
 ## Requisitos
-- Docker. Imágenes usadas: `jasonish/suricata:7.0` y `php:8.3-cli`.
+- Docker. Imágenes usadas: `jasonish/suricata:7.0` y `php:8.3-cli`; los scripts de
+  `capturas/` usan además `alpine:3.20`, `nicolaka/netshoot`, `instrumentisto/nmap` y
+  `python:3.12-alpine`.
 
 ## Contenido y cómo reproducir
 

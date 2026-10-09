@@ -5,8 +5,8 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 
 mkdir -p "$PWD/pcap"
-docker network rm ssi-sniff-net >/dev/null 2>docker network rm ssi-sniff-net >/dev/null 2>&1 || true1 || true
 docker rm -f ssi-web ssi-tap >/dev/null 2>&1 || true
+docker network rm ssi-sniff-net >/dev/null 2>&1 || true
 
 docker network create --internal --subnet 10.20.0.0/16 ssi-sniff-net >/dev/null
 # Servidor web de laboratorio que registra el cuerpo del POST /login (HTTP en claro).
